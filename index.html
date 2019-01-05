@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>Crypto-Trado : Trade various Cryptocurrencies easily and free of cost.</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+ <script type="text/javascript" src="script.js"></script>
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body onload="getdata()">
+
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Crypto-Trado</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active">  <a href="#">  Home  </a>  </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="http://www.google.com">Redirect to Google</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Net Worth</a></li>
+        </ul>
+      </li>
+      <!-- <li><span>HELLO</span><span id="username"> </span></li>
+      <li id="bal"> <span>AVAILABLE BALANCE</span><span id="availbal"></span></div></li> -->
+      <!-- <li >  <a href="#"> Sign Up  </a>  </li> -->
+      <!-- <li data-toggle="modal" data-target="#myModal"><a>SIGN</a></li> -->
+      
+      <li id="but"> <button type="button" id="btsignup" class="btn btn-default" data-toggle="modal" data-target="#myModal" style="margin-top: 10%">NEW USER</button></li>
+      <li id="but2"> <button type="button" id="btlogout" onclick="logout()" class="btn btn-default" style="margin-top: 10%">LOG OUT</button></li>
+      <div id="leftBalance" style = "align-items: right"> </div>
+    </ul>
+
+    <!-- <div id="bal"> <span>AVAILABLE BALANCE</span><p id="availbal"></p></div> -->
+    <!-- <span id =class="navbar-form navbar-right">AVAILABLE BALANCE</span> -->
+
+
+    <!-- <form class="navbar-form navbar-right" action="/action_page.php">
+      <div class="input-group">
+        <input type="text" id = "searchKey" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+    </form> -->
+  </div>
+</nav>
+<div>
+
+<div id="leftBalance">
+  
+</div>
+
+
+<!-- modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <!-- <center><h4 class="modal-title">Enter your details</h4></center> -->
+            </div>
+            <div class="modal-body">
+              
+              <form action="">
+                 <center> <h2>Enter Your Details</h2></center>
+                  <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="bal">Available Balance(in USD):</label>
+                    <!-- <input type="number" class="form-control" id="bal"> -->
+                    <input type="text" class="form-control" id="bala">
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 
+                  <center><button type="submit" class="btn btn-primary" style="margin-top: 18%" onclick="signup()">Sign Up</button></center>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="container">
+            <span>WELCOME</span><p id="username"> </p>
+           <div id="bal"> <span>AVAILABLE BALANCE</span><p id="availbal"></p></div>
+
+
+<!-- BUY -->
+
+<div class="realtime">
+       <table class="table table-striped table-dark">
+               <thead>
+                 <tr>
+                   <!-- <th scope="col">#</th> -->
+                   <th scope="col">CURRENCY</th>
+                   <th scope="col">OPENING PRICE</th>
+                   <th scope="col">CURRENT PRICE</th>
+                   <th scope="col">CHANGE</th>
+                   <th scope="col">BUY COINS</th>
+                 </tr>
+               </thead>
+
+               <tbody>
+                 <tr>
+                   <!-- <th scope="row">1</th> -->
+                   <td id="bname">BITCOIN</td>
+                   <td id="bop">-</td>
+                   <td id="bcp">-</td>
+                   <td id="cb">-</td>
+                   <td ><form>
+                           <div class="value-button" id="decrease" onclick="decreaseValueb()" value="Decrease Value">-</div>
+                           <input type="number" id="numberb" value="0" >
+                           <div class="value-button" id="increase" onclick="increaseValueb()" value="Increase Value">+</div>
+                         </form></td>
+                    <td class="dropdown">
+                      <button  style="background-color: #008CBA; border: none;
+                      color: black;
+                      margin-top: 28%;
+                      padding: 5px 10px;
+                      text-align: center;
+                      text-decoration: none;
+                      display: inline-block;
+                      font-size: 14px; border-radius: 12px;"><a href="graph1.html" target="_blank" ><b style="color: black">Graph</b></a></button>
+                     <!-- <div id="bitkachart" style="height: 20%; width:20%"></div> -->
+                            </td>      
+                 </tr>
+                 <tr>
+                   <!-- <th scope="row">2</th> -->
+                   <td id="ename">ETHEREUM</td>
+                   <td id="eop">-</td>
+                   <td id="ecp">-</td>
+                   <td id="ce">-</td>
+                   <td ><form>
+                           <div class="value-button" id="decrease" onclick="decreaseValuee()" value="Decrease Value">-</div>
+                           <input type="number" class="number" id="numbere" value="0" />
+                           <div class="value-button" id="increase" onclick="increaseValuee()" value="Increase Value">+</div>
+                         </form></td>
+                      <td class="dropdown">
+                              <button style="background-color: #008CBA; border: none;
+                              color: black;
+                              margin-top: 28%;
+                              padding: 5px 10px;
+                              text-align: center;
+                              text-decoration: none;
+                              display: inline-block;
+                              font-size: 14px; border-radius: 12px;"><a href="grapheuth.html" target="_blank"><b style="color:black">Graph</b></a></button>
+                             <!-- <div id="bitkachart" style="height: 20%; width:20%"></div> -->
+                                    </td>    
+                 </tr>
+                 <tr>
+                   <!-- <th scope="row">3</th> -->
+                   <td id="dname" >DASH</td>
+                   <td id="dop">-</td>
+                   <td id="dcp">-</td>
+                   <td id="cd">-</td>
+                   <td ><form>
+                           <div class="value-button" id="decrease" onclick="decreaseValued()" value="Decrease Value">-</div>
+                           <input type="number" class="number"  id="numberd" value="0" />
+                           <div class="value-button" id="increase" onclick="increaseValued()" value="Increase Value">+</div>
+                         </form></td>
+                   
+                     <td class="dropdown">
+                            <button  style="background-color: #008CBA; border: none;
+                            color: black;
+                            margin-top: 28%;
+                            padding: 5px 10px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 14px; border-radius: 12px;"><a href="graphdash.html" target="_blank"><b style="color:black">Graph</b></a></button>
+                           <!-- <div id="bitkachart" style="height: 20%; width:20%"></div> -->
+                                  </td>
+                      <!-- <div id="dashkachart" style="height: 100%; width:100%"></div></select> -->
+                      </td>                
+                 </tr>
+                 <!-- <tr>
+                       <th scope="row">4</th>
+                       <td>Mark</td>
+                       <td>Otto</td>
+                       <td>@mdo</td>
+                     </tr>
+                     <tr>
+                           <th scope="row">5</th>
+                           <td>Mark</td>
+                           <td>Otto</td>
+                           <td>@mdo</td>
+                         </tr> -->
+               </tbody>
+             </table>
+<center> <button class="btn btn-primary" onclick="buy()">BUY</button>
+             <!--<button class="btn btn-primary">SELL</button>--></center>
+<br>
+<br>
+<br>
+<br>
+
+             <div id = "toptobottom" style="padding-bottom: 20%">
+                    <div class="realtime">
+                          <table class="table table-striped table-dark" id = "myTable">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">CURRENCY</th>
+                                      <th scope="col">NUMBER</th>
+                                      <th scope="col">INVESTMENT</th>
+                                      <th scope="col">INVESTMENT</th>
+                                      <th scope="col">SELL</th>
+   
+                                     <!--  <th scope="col">CURRENT PRICE</th>
+                                      <th scope="col">CHANGE</th> -->
+                                    </tr>
+   
+                                  </thead>
+   
+                                  <!-- <tbody>
+                                    <tr>
+                                      <th scope="row">1</th>
+                                      <td >BITCOIN</td>
+                                      <td id="bop">-</td>
+                                      <td id="bcp">-</td>
+                                      <td id="cb">-</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">2</th>
+                                      <td >ETHEREUM</td>
+                                      <td id="eop">-</td>
+                                      <td id="ecp">-</td>
+                                      <td id="ce">-</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">3</th>
+                                      <td >DASH</td>
+                                      <td id="dop">-</td>
+                                      <td id="dcp">-</td>
+                                      <td id="cd">-</td>
+                                    </tr>
+                                  </tbody> -->
+   
+   
+                                </table>
+                              </div>
+                              <!-- <center> <button class="btn btn-primary" onclick="sell()">SELL</button>
+              </center> -->
+
+<div class="footer">
+  <div class = "fl">
+    <p>Contact Us</p>
+    <a href="https://facebook.com/thekushalghosh" target="_blank">Kushal Ghosh</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.facebook.com/shivam.raj.7399786" target="_blank">Shivam Raj</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://www.facebook.com/akt114" target="_blank">Amit Kumar Tiwary</a>
+  </div>
+  <p>
+  </p>
+</div>
+https://akt114.github.io/Crypto-Trado/
+Team Name : Sone Jaa Rahe
+Team Members: Kushal Ghosh, Amit Kumar Tiwary, Shivam Raj
+Website Description : Anyone can trade various Cryptocurrencies, with real time rates and variation charts.

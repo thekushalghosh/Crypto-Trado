@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> DASH-Graph</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta charset="UTF-8"> 
+</head>
+<style>
+
+#container {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+</style>
+<body>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<center>
+<div >
+        <iframe width="200" height="150" src="https://www.youtube.com/embed/uP8keIaSLQc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+</center>
+<br>
+<br>
+
+
+<div class="container">
+    <div id='container'>
+
+
+
+
+    </div>
+
+
+</div>
+<br>
+    <br>
+    <div class="col-md-12" style="background-color: grey"id="desc" ><h5><center><b>Description</b></center></h5><br>A cryptocurrency (or crypto currency) is a digital asset designed to work as a medium of exchange that uses strong cryptography to secure financial transactions, control the creation of additional units, and verify the transfer of assets.[1][2][3] Cryptocurrencies are a kind of alternative currency and digital currency (of which virtual currency is a subset). Cryptocurrencies use decentralized control as opposed to centralized digital currency and central banking systems.[4]
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script>
+    xh();
+    var d=new Date()
+    var pppz=d.toTimeString().substr(2,3);
+    var eeez=d.toTimeString().substr(0,2);
+    var qqqz=parseFloat(pppz);
+    eeez=parseFloat(eeez)
+
+
+
+    var chart=Highcharts.chart('container', {
+
+title: {
+    text: 'DASH Exchange Rates'
+},
+
+subtitle: {
+    text: 'In US Dollars'
+},
+
+yAxis: {
+    title: {
+        text: 'US Dollars'
+    }
+},
+// xAxis: {
+//     type:'datetime'
+// },
+
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        },
+        //  pointStart: Date.UTC(2018,11,14,eeez,qqqz),
+        //  pointInterval :10000//one day
+    }
+},
+
+series: [{
+  
+    name: 'US DOLLAR',
+    data: []
+}],
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 600
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+});
+
+setInterval(xh,5000)
+
+
+function xh(){ 
+//count++
+console.log("before hit")
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         value=JSON.parse(xhttp.responseText);
+        //console.log(value.bpi.EUR.rate);
+        
+        var usd=value.DASH.USD;
+        
+            console.log(value)
+        
+        chart.series[0].addPoint(usd)
+        
+    console.log("after hit")
+    }
+
+
+  };
+  xhttp.open("GET", "https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,DASH&tsyms=BTC,USD,EUR&api_key=26dd808c2fb11b0ba21e6812bb913dbe9a657d422d5f868a641bee142c1f4a8d26dd808c2fb11b0ba21e6812bb913dbe9a657d422d5f868a641bee142c1f4a8d", true);
+  xhttp.send();
+  console.log(1)
+}   
+
+</script>
+
+
+
+</body>
+
+
+</html>
